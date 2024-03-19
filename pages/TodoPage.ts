@@ -47,18 +47,6 @@ export class TodoPage extends BasePage {
       await this.todoItem.locator('.destroy').first().click()
     }
   }
-  async getTodoItems(text: string) {
-    const displayedItems = [];
-    const itemList = await this.itemList.all(); // Use all() instead of elements()
 
-    // Loop through each todo item element and retrieve its text content
-    for (const item of itemList) {
-      const itemText = await item.textContent();
-      displayedItems.push(itemText);
-    }
-
-    // Validate that displayed todo items match the expected todo items
-
-  }
 
 }
