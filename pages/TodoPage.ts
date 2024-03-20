@@ -10,6 +10,7 @@ export class TodoPage extends BasePage {
   readonly search: Locator
   readonly noTask: Locator
   readonly itemList: Locator
+  readonly notification: Locator
 
 
   constructor(page: Page) {
@@ -23,6 +24,7 @@ export class TodoPage extends BasePage {
     this.noTask = page.locator('.has-text-danger')
     //this.itemList = page.locator('.panel-block.todo-item.Projects_hover__6uEQG')
     this.itemList = page.locator('#panel')
+    this.notification = page.locator('.notification')
   }
 
   async goto() {
