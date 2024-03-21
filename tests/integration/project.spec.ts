@@ -78,9 +78,13 @@ Validate that the task list is empty, displaying the message â€œNo task found!â€
       displayedItems.push(itemText);
     }
 
-    // Validate that displayed todo items match the expected todo items
-    // const displayedItemsArray = displayedItems.map(item => item.trim());
-    // expect(displayedItemsArray).toStrictEqual(todoItems);
+    const displayedItemsString = displayedItems.join('\n');
+    const displayedItemsArray = displayedItemsString
+      .split('\n')
+      .map((item) => item.trim());
+
+    expect(displayedItemsArray).toEqual(todoItems);
+
     await todoPage.removeAll();
     await todoPage.inputBox.clear();
     await expect(todoPage.noTask).toHaveText('No task found!');
@@ -98,9 +102,7 @@ Validate that the number of tasks visible in the list is exactly 1.
 
     for (const item of todoItems) {
       await todoPage.addTodo(item);
-      await todoPage.page.waitForTimeout(1000);
     }
-
     const displayedItems = [];
     const itemList = await todoPage.itemList.all();
 
@@ -109,9 +111,12 @@ Validate that the number of tasks visible in the list is exactly 1.
       displayedItems.push(itemText);
     }
 
-    // Validate that displayed todo items match the expected todo items
-    // const displayedItemsArray = displayedItems.map(item => item.trim());
-    // expect(displayedItemsArray).toStrictEqual(todoItems);
+    const displayedItemsString = displayedItems.join('\n');
+    const displayedItemsArray = displayedItemsString
+      .split('\n')
+      .map((item) => item.trim());
+
+    expect(displayedItemsArray).toEqual(todoItems);
     const lastItem = todoItems[todoItems.length - 1];
     const filteredItems = await todoPage.itemList.textContent();
     expect(filteredItems).toContain(lastItem);
